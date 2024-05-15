@@ -32,13 +32,13 @@ Include conf.d/variables/custom.vars
 
        ################## Adapt regex to match CORS origin(s) for your environment
        # Dev EDS Preview Server
-	   SetEnvIfExpr "env('CORSProcessing') == 'true' && req_novary('Origin') =~ m#(https://.*\.hlx\.page$)#" CORSTrusted=true     
+	   SetEnvIfExpr "env('CORSProcessing') == 'true' && req_novary('Origin') =~ m#(https://.*\.hlx\.page/.*$)#" CORSTrusted=true     
 	   
 	   # Dev EDS Live Server
-	   SetEnvIfExpr "env('CORSProcessing') == 'true' && req_novary('Origin') =~ m#(https://.*\.hlx\.live$)#" CORSTrusted=true
+	   SetEnvIfExpr "env('CORSProcessing') == 'true' && req_novary('Origin') =~ m#(https://.*\.hlx\.page/.*$)#" CORSTrusted=true
 	   
 	   # Developer Localhost
-       SetEnvIfExpr "env('CORSProcessing') == 'true' && req_novary('Origin') =~ m#(http://localhost(:\d+)?$)#" CORSTrusted=true
+       SetEnvIfExpr "env('CORSProcessing') == 'true' && req_novary('Origin') =~ m#(http://localhost:.*/*$)#" CORSTrusted=true
 
        # Extract the Origin header
        SetEnvIfNoCase ^Origin$ ^(.*)$ CORSTrustedOrigin=$1
